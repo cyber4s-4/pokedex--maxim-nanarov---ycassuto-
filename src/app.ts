@@ -1,3 +1,4 @@
+
 import { PokemonComponent } from "./shared/pokemonComponent";
 
 async function getPokemons() {
