@@ -19,7 +19,7 @@ class Module {
     async getPokemonByRandom() {
         let randomNum = Math.floor(Math.random() * 1100);
         console.log(this.pokemonsPromise);
-        this.pokemonsPromise.then((respond) => respond).then((response) => {
+        this.pokemonsPromise.then((response) => {
             this.getPokemonByName(response[randomNum]);
         })
     }
@@ -41,7 +41,7 @@ class Module {
         let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
         this.getPokemonByName(input);
     }
-    searchRandomPokemon() {    
+    searchRandomPokemon() {
         this.getPokemonByRandom();
     }
 }
@@ -52,6 +52,9 @@ export const module = new Module();
 function onLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     module.getPokemons();
+    for (let i = 0; i < 54; i++) {
+        module.getPokemonByRandom();
+    }
 }
 window.addEventListener("load", () => {
     onLoad();
