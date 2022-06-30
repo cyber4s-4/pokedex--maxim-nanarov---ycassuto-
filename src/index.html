@@ -13,24 +13,25 @@
 
 <body>
   <header>
-    <h2>maxim and yuval pokemons website!! </h2>
+    <h2>M&Y pokemons Wiki!! </h2>
   </header>
   <main>
     <div class="search-pokemon">
-      <h3>search a pokemon!</h3>
-      <input type="text" id="search-poke-input">
-      <button onclick="app.module.searchPokemon()">search</button>
+      <fieldset>
+        <legend>search a pokemon</legend>
+
+        <input type="text" id="search-poke-input">
+        <button onclick="app.module.searchPokemon()">search</button><button>Surprise Me!</button>
+      </fieldset>
     </div>
     <div class="container">
-      <button>Surprise Me!</button>
-      <div id="pokemons-list">
-        <div class="pokemon">
-          <img src="" class="pokemon-img">
-          <div class = "pokemon-number">#001</div>
-          <div class="pokemon-name">Bulbasaur</div>
-          <div class="pokemon-type">Grass</div>
+      <fieldset>
+        <legend>Stats</legend>
+        <div id="pokemons-list">
+
         </div>
-      </div>
+    </div>
+    </fieldset>
     </div>
   </main>
 </body>

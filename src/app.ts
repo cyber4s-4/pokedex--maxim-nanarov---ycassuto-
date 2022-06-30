@@ -1,6 +1,7 @@
 
 import { PokemonComponent } from "./shared/pokemonComponent";
-let pokemonsList:HTMLDivElement;
+import { PokemonData } from "./shared/pokemonComponent";
+
 class Module {
     pokemonsPromise: Promise<any>;
 
@@ -21,11 +22,12 @@ class Module {
         let wantedPokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + name)
             .then(res => res.json())
             .then(data => this.createPokemoneElement(data))
-            .catch(() => {/*TODO:ERROR MESSAGE */ })
+            .catch(() => {/*TODO:ERROR MESSAGE  */ })
     }
 
-    createPokemoneElement(PokemonData:object){
-        let pokemonComponent = new PokemonComponent(PokemonData, pokemonsList);
+    createPokemoneElement(pokemonData: PokemonData) { //render with the data into the html page.
+        let pokemonComponent = new PokemonComponent(pokemonData, pokemonsList);
+        pokemonComponent.render()
     }
 
     searchPokemon() {
@@ -37,8 +39,12 @@ class Module {
 
 
 export const module = new Module();
-
-document.addEventListener("load", () => {
-    pokemonsList = document.getElementById("pokemons-list") as HTMLDivElement;
+function onLoad() {
+    pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
+    console.log("pokemonsList");
     module.getPokemons();
+}
+document.addEventListener("load", () => {
+    onLoad();
 })
+let pokemonsList: HTMLElement;
