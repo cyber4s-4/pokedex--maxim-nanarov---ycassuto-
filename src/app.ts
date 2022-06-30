@@ -45,7 +45,8 @@ class Module {
         this.getPokemonByRandom();
     }
 }
-function f() {
+
+function filterPokemonsByInputValue() {
     let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
     if (input === "") {
         return;
@@ -70,7 +71,7 @@ export const module = new Module();
 function onLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     module.getPokemons();
-    document.getElementById("search-poke-input")!.addEventListener("keyup", f);
+    document.getElementById("search-poke-input")!.addEventListener("keyup", filterPokemonsByInputValue);
     for (let i = 0; i < 50; i++) {
         module.getPokemonByRandom();
     }
