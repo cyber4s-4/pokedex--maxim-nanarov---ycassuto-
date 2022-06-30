@@ -35,7 +35,7 @@ html,body{
     display:flex;
     justify-content:center;
     text-align:center; 
-    flex-direction: column;
+    flex-direction:row;
     
 }
 
@@ -45,6 +45,7 @@ html,body{
     margin: 7%;
     margin-top: 5%;
     transition: 0.5s;
+    border-radius: 25%;
 }
 
 .pokemon:hover{
@@ -52,3 +53,53 @@ html,body{
     background-color: rgba(43, 43, 43, 0.5);
     cursor: pointer;
 }
+
+/* CSS */
+button {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  line-height: normal;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+footer{
+    margin-top: 10%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    text-decoration: underline;
+    font-size: larger;
+    height: 50px;
+    background-color: rgba(94, 94, 94, 0.307); 
+}
+
