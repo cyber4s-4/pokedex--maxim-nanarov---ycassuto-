@@ -35,9 +35,20 @@ html,body{
     display:flex;
     justify-content:center;
     text-align:center; 
+    flex-direction: column;
     
 }
 
-// .pokemons-list{
-    
-// }
+.pokemon{
+    background: rgba(43, 43, 43, 0.146);
+    padding-bottom: 15%;
+    margin: 7%;
+    margin-top: 5%;
+    transition: 0.5s;
+}
+
+.pokemon:hover{
+    margin: 5%;
+    background-color: rgba(43, 43, 43, 0.5);
+    cursor: pointer;
+}
