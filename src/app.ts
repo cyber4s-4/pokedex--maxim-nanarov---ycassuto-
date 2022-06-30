@@ -19,7 +19,7 @@ class Module {
     async getPokemonByRandom() {
         let randomNum = Math.floor(Math.random() * 1100);
         console.log(this.pokemonsPromise);
-        this.pokemonsPromise.then((respond) => respond).then((response) => {
+        this.pokemonsPromise.then((response) => {
             this.getPokemonByName(response[randomNum]);
         })
     }
@@ -29,7 +29,7 @@ class Module {
         let wantedPokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + name)
             .then(res => res.json())
             .then(data => this.createPokemoneElement(data))
-            .catch(() => {console.log('didnt work') })
+            .catch(() => { console.log('didnt work') })
     }
 
     createPokemoneElement(pokemonData: PokemonData) { //render with the data into the html page.
@@ -41,7 +41,7 @@ class Module {
         let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
         this.getPokemonByName(input);
     }
-    searchRandomPokemon() {    
+    searchRandomPokemon() {
         this.getPokemonByRandom();
     }
 }
@@ -52,6 +52,9 @@ export const module = new Module();
 function onLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     module.getPokemons();
+    for (let i = 0; i < 40; i++) {
+        module.getPokemonByRandom();
+    }
 }
 window.addEventListener("load", () => {
     onLoad();

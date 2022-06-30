@@ -1,25 +1,22 @@
-
-
-header{
+header {
     margin: 0%;
     width: 100%;
     height: 60px;
-    background-color: rgba(94, 94, 94, 0.307);    
-    display:flex;
-    justify-content:center;
-    text-align:center;
-    font-family:Arial, Helvetica, sans-serif;
+    background-color: rgba(94, 94, 94, 0.307);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.search-pokemon{
+.search-pokemon {
     margin-top: 5%;
-    display:flex;
-    justify-content:center;
-    text-align:center; 
-    
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
-html,body{
+html,body {
     margin: 0%;
     padding: 0%;
     top: 0%;
@@ -28,70 +25,72 @@ html,body{
     background-repeat: no-repeat;
 }
 
-.container{
+.container {
     margin-top: 5%;
     padding-right: 10%;
     padding-left: 10%;
-    display:flex;
-    justify-content:center;
-    text-align:center; 
-    flex-direction:row;
-    
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    max-width: fit-content;
 }
 
-.pokemon{
+#pokemons-list {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon {
     background: rgba(43, 43, 43, 0.146);
-    padding-bottom: 15%;
-    margin: 7%;
-    margin-top: 5%;
     transition: 0.5s;
     border-radius: 25%;
-}
-
-.pokemon:hover{
-    margin: 5%;
-    background-color: rgba(43, 43, 43, 0.5);
-    cursor: pointer;
+    margin: 1%;
+    max-width: 120px;
+    &:hover {
+        margin: 2%;
+        background-color: rgba(43, 43, 43, 0.5);
+        cursor: pointer;
+    }
 }
 
 /* CSS */
 button {
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid #1A1A1A;
-  border-radius: 15px;
-  box-sizing: border-box;
-  color: #3B3B3B;
-  cursor: pointer;
-  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  line-height: normal;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  will-change: transform;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #1a1a1a;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3b3b3b;
+    cursor: pointer;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: normal;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+    &:disabled {
+        pointer-events: none;
+    }
+    &:hover {
+        color: #fff;
+        background-color: #1a1a1a;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        transform: translateY(-2px);
+    }
+    &:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
 }
 
-button:disabled {
-  pointer-events: none;
-}
-
-button:hover {
-  color: #fff;
-  background-color: #1A1A1A;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
-
-button:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-
-footer{
+footer {
     margin-top: 10%;
     display: flex;
     text-align: center;
@@ -100,6 +99,5 @@ footer{
     text-decoration: underline;
     font-size: larger;
     height: 50px;
-    background-color: rgba(94, 94, 94, 0.307); 
+    background-color: rgba(94, 94, 94, 0.307);
 }
-
