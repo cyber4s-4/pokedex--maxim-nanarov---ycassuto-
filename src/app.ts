@@ -10,19 +10,26 @@ class Module {
     }
 
     async getPokemons() {
-        let allPokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000")
+        let allPokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1154")
             .then(res => res.json())
             .then(data => data["results"]);
         return allPokemons.map((pokemon: { name: string }) => pokemon.name)
     }
 
+    async getPokemonByRandom() {
+        let randomNum = Math.floor(Math.random() * 1100);
+        console.log(this.pokemonsPromise);
+        this.pokemonsPromise.then((respond) => respond).then((response) => {
+            this.getPokemonByName(response[randomNum]);
+        })
+    }
 
     async getPokemonByName(name: string) {
 
         let wantedPokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + name)
             .then(res => res.json())
             .then(data => this.createPokemoneElement(data))
-            .catch(() => {/*TODO:ERROR MESSAGE  */ })
+            .catch(() => {console.log('didnt work') })
     }
 
     createPokemoneElement(pokemonData: PokemonData) { //render with the data into the html page.
@@ -33,6 +40,9 @@ class Module {
     searchPokemon() {
         let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
         this.getPokemonByName(input);
+    }
+    searchRandomPokemon() {    
+        this.getPokemonByRandom();
     }
 }
 
