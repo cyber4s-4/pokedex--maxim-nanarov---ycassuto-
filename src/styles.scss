@@ -16,13 +16,28 @@ header{
     display:flex;
     justify-content:center;
     text-align:center; 
+    
 }
 
 html,body{
     margin: 0%;
     padding: 0%;
     top: 0%;
-    // background: rgb(255,0,0);
-    // background: linear-gradient(180deg, rgba(255,0,0,0.3954175420168067) 0%, rgba(0,212,255,1) 100%);
-    // background-repeat: no-repeat;
+    background: rgb(121, 121, 121);
+    background: linear-gradient(180deg, rgba(20, 137, 255, 0.395) 0%, rgba(205, 85, 85, 0.331) 100%);
+    background-repeat: no-repeat;
+}
+
+.container{
+    margin-top: 5%;
+    padding-right: 10%;
+    padding-left: 10%;
+    display:flex;
+    justify-content:center;
+    text-align:center; 
+    
+}
+
+.pokemons-list{
+    
 }

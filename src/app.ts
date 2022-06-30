@@ -21,10 +21,10 @@ class Module {
         let wantedPokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + name)
             .then(res => res.json())
             .then(data => this.createPokemoneElement(data))
-            .catch(() => {/*TODO:ERROR MESSAGE */ })
+            .catch(() => {/*TODO:ERROR MESSAGE  */ })   
     }
 
-    createPokemoneElement(PokemonData:object){
+    createPokemoneElement(PokemonData:object){ //render with the data into the html page.
         console.log(PokemonData)
     }
 
