@@ -4,12 +4,16 @@ export interface PokemonData {
     sprites: Sprites
     height: number;
     weight: number;
-    types: Type[];
+    types: Types[];
 }
 
 interface Sprites {
     front_default: string;
 }
+interface Types {
+    type:Type;
+}
+
 interface Type {
     name: string;
 }
@@ -25,10 +29,6 @@ export class PokemonComponent {
     }
 
     render() {
-        console.log(this.data);
-        console.log(this.parent);
-
-
         this.parent.innerHTML += `<div class="pokemon">
             <div class="stat">
               <img src="${this.data.sprites.front_default}" class="pokemon-img">
@@ -37,7 +37,7 @@ export class PokemonComponent {
               <label>Pokemon Name:${this.data.name} </label>
             </div>
             <div class="stat">
-              <label>Type: ${this.data.types[0]} </label>
+              <label>Type: ${this.data.types[0].type.name} </label>
             </div>
           </div>`;
     }

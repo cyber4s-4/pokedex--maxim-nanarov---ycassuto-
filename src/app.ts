@@ -41,10 +41,9 @@ class Module {
 export const module = new Module();
 function onLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
-    console.log("pokemonsList");
     module.getPokemons();
 }
-document.addEventListener("load", () => {
+window.addEventListener("load", () => {
     onLoad();
 })
 let pokemonsList: HTMLElement;
