@@ -18,7 +18,6 @@ class Module {
 
     async getPokemonByRandom() {
         let randomNum = Math.floor(Math.random() * 1100);
-        console.log(this.pokemonsPromise);
         this.pokemonsPromise.then((response) => {
             this.getPokemonByName(response[randomNum]);
         })
@@ -41,18 +40,39 @@ class Module {
         let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
         this.getPokemonByName(input);
     }
+
     searchRandomPokemon() {
         this.getPokemonByRandom();
     }
 }
 
+function filterPokemonsByInputValue() {
+    let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
+    if (input === "") {
+        return;
+    }
+
+    if (!onlyLetters(input)) {
+        return;
+    }
+    
+    pokemonsList.innerHTML = "";
+    module.pokemonsPromise.then((response) => {
+        let arr = response.filter((name: string) => name.startsWith(input));
+        arr.forEach((pokemonName: string) => { module.getPokemonByName(pokemonName) });
+    })
+}
+function onlyLetters(str: string) {
+    return /^[a-zA-Z]+$/.test(str);
+}
 
 
 export const module = new Module();
 function onLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     module.getPokemons();
-    for (let i = 0; i < 54; i++) {
+    document.getElementById("search-poke-input")!.addEventListener("keyup", filterPokemonsByInputValue);
+    for (let i = 0; i < 50; i++) {
         module.getPokemonByRandom();
     }
 }
