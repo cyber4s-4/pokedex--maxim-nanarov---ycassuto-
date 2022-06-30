@@ -28,12 +28,18 @@ class Module {
         let wantedPokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + name)
             .then(res => res.json())
             .then(data => this.createPokemoneElement(data))
-            .catch(() => { console.log('didnt work') })
+            .catch(() => {console.error("pokemon dosen't exsist") })
     }
 
     createPokemoneElement(pokemonData: PokemonData) { //render with the data into the html page.
         let pokemonComponent = new PokemonComponent(pokemonData, pokemonsList);
         pokemonComponent.render()
+    }
+    
+    MoveTo(str:any){
+        console.log(str);
+        window.location.href = str;
+
     }
 
     searchPokemon() {
@@ -69,6 +75,7 @@ function onlyLetters(str: string) {
 
 export const module = new Module();
 function onLoad() {
+    console.log(window.location.href);
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     module.getPokemons();
     document.getElementById("search-poke-input")!.addEventListener("keyup", filterPokemonsByInputValue);

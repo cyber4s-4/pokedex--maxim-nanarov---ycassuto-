@@ -1,3 +1,5 @@
+import { module } from "../app";
+
 
 export interface PokemonData {
     name: string;
@@ -29,7 +31,7 @@ export class PokemonComponent {
     }
 
     render() {
-        this.parent.innerHTML += `<div class="pokemon">
+        this.parent.innerHTML += `<div id="${this.data.name}" onclick="app.module.MoveTo(this.id)" class="pokemon">
             <div class="stat">
               <img src="${this.data.sprites.front_default}" class="pokemon-img">
             </div>
@@ -47,5 +49,6 @@ export class PokemonComponent {
               <label>weight: ${this.data.weight} </label>
             </div>
           </div>`;
+          
     }
 }
