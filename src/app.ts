@@ -1,6 +1,6 @@
 
 import { PokemonComponent } from "./shared/pokemonComponent";
-
+let pokemonsList:HTMLDivElement;
 class Module {
     pokemonsPromise: Promise<any>;
 
@@ -25,7 +25,7 @@ class Module {
     }
 
     createPokemoneElement(PokemonData:object){
-        console.log(PokemonData)
+        let pokemonComponent = new PokemonComponent(PokemonData, pokemonsList);
     }
 
     searchPokemon() {
@@ -39,5 +39,6 @@ class Module {
 export const module = new Module();
 
 document.addEventListener("load", () => {
+    pokemonsList = document.getElementById("pokemons-list") as HTMLDivElement;
     module.getPokemons();
 })
