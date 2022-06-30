@@ -35,6 +35,12 @@ class Module {
         let pokemonComponent = new PokemonComponent(pokemonData, pokemonsList);
         pokemonComponent.render()
     }
+    
+    MoveTo(str:any){
+        console.log(str);
+        window.location.href = str;
+
+    }
 
     searchPokemon() {
         let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
@@ -69,6 +75,7 @@ function onlyLetters(str: string) {
 
 export const module = new Module();
 function onLoad() {
+    console.log(window.location.href);
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     module.getPokemons();
     document.getElementById("search-poke-input")!.addEventListener("keyup", filterPokemonsByInputValue);
