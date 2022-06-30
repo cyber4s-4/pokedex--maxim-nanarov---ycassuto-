@@ -39,6 +39,13 @@ export class PokemonComponent {
             <div class="stat">
               <label>Type: ${this.data.types[0].type.name} </label>
             </div>
+            <div class="stat">
+              <label>height: ${this.data.height} </label>
+            </div>
+
+            <div class="stat">
+              <label>weight: ${this.data.weight} </label>
+            </div>
           </div>`;
     }
 }
