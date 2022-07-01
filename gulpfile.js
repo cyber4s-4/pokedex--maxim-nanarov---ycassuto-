@@ -26,7 +26,7 @@ gulp.task("scss", () => {
 // Transfers index
 gulp.task("index", () => {
   return gulp
-    .src(["./src/index.html", "./src/favicon.ico"])
+    .src(["./src/index.html", "./src/SpecificPokemon/Specific.html","./src/favicon.ico"])
     .pipe(gulp.dest("./dist"));
 });
 
@@ -44,6 +44,7 @@ gulp.task("browser-sync-watch", () => {
   gulp.watch("./dist/styles.css").on("change", browserSync.reload);
   gulp.watch("./dist/app.js").on("change", browserSync.reload);
   gulp.watch("./dist/index.html").on("change", browserSync.reload);
+  gulp.watch("./dist/Specific.html").on("change", browserSync.reload);
 });
 
 // Watch scss files
@@ -54,6 +55,10 @@ gulp.task("watch-scss", () => {
 // Watch html files
 gulp.task("watch-index-html", () => {
   return gulp.watch("./src/index.html", gulp.series("index"));
+});
+
+gulp.task("watch-Specific-html", () => {
+  return gulp.watch("./src/SpecificPokemon/Specific.html", gulp.series("index"));
 });
 
 // Watch tsc files
@@ -87,6 +92,7 @@ gulp.task(
       "browser-sync-watch",
       "watch-scss",
       "watch-index-html",
+      "watch-Specific-html",
       "watch-tsc",
       "tsc-w"
     )
