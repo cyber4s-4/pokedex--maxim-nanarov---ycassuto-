@@ -41,8 +41,11 @@ class Module {
 
   MoveTo(str: any) {
     console.log(str);
-    let quarry = "name="+str;
-    window.location.href = "http://localhost:4000/Specific.html?"+quarry;
+    let quarry = "name=" + str;
+    window.location.href = "http://localhost:4000/Specific.html?" + quarry;
+  }
+  GoBack(){
+    window.location.href ="http://localhost:4000/";
   }
 
   searchPokemon() {
@@ -95,25 +98,33 @@ function onLoad() {
 
 function onLoadSpecific() {
   //Specific pokemon page
-    pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
-    module.getPokemons();
-    // document
-    //   .getElementById("search-poke-input")!
-    //   .addEventListener("keyup", filterPokemonsByInputValue);
-    const myURL = new URL(window.location.href);
-    console.log(myURL.search)
-    let name = 'none'
-    myURL.search.replace('?','').split('&').forEach(query =>{
-        let key = query.split('=')[0];
-        if(key === 'name'){
-            name = query.split('=')[1];
-        }
-    })
-    console.log(name);
-    module.getPokemonByName(name);
+  pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
+  module.getPokemons();
+  // document
+  //   .getElementById("search-poke-input")!
+  //   .addEventListener("keyup", filterPokemonsByInputValue);
+  const myURL = new URL(window.location.href);
+  console.log(myURL.search);
+  let name = "none";
+  myURL.search
+    .replace("?", "")
+    .split("&")
+    .forEach((query) => {
+      let key = query.split("=")[0];
+      if (key === "name") {
+        name = query.split("=")[1];
+      }
+    });
+  console.log(name);
+  module.getPokemonByName(name);
 }
 window.addEventListener("load", () => {
-    if(window.location.href === "http://localhost:4000/") {onLoad();}
-    else if (window.location.href.includes("http://localhost:4000/Specific.html")) {onLoadSpecific()}
+  if (window.location.href === "http://localhost:4000/") {
+    onLoad();
+  } else if (
+    window.location.href.includes("http://localhost:4000/Specific.html")
+  ) {
+    onLoadSpecific();
+  }
 });
 let pokemonsList: HTMLElement;
