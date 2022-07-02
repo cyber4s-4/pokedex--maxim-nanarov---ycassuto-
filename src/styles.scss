@@ -18,6 +18,9 @@ header {
     display: flex;
     justify-content: center;
     text-align: center;
+    button{
+        width:max-content;
+    }
 }
 
 html,body {
@@ -41,20 +44,20 @@ html,body {
 }
 
 .containery {
-    margin-top: 5%;
-    padding-right: 10%;
-    padding-left: 10%;
     display: flex;
     justify-content: center;
     text-align: center;
-    flex-direction: row;
-    max-width:max-content;
-    background-color: rgba(153, 153, 153, 0.459);
+    flex-direction:column;
+    background-color: rgba(153, 153, 153, 0.112);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #pokemons-list {
     max-width: 100%;
     display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
@@ -122,4 +125,12 @@ footer {
 h3{
     margin-left: 15%;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.arrtibutes{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
 }

@@ -10,13 +10,13 @@ export interface PokemonData {
   stats: stats[];
 }
 
-interface stats{
+interface stats {
   stat: stat;
   base_stat: number;
   effort: number;
 }
 
-interface stat{
+interface stat {
   name: string;
 }
 
@@ -64,31 +64,25 @@ export class PokemonComponent {
       console.log(this.data);
       document.getElementById("Title")!.innerHTML = this.data.name;
       this.parent.innerHTML += `<div id="${this.data.name}" class="Spokemon">
-    <div class="stat">
+      <div>
       <img src="${this.data.sprites.front_default}" class="pokemon-img">
-    </div>
-    <div class="stat">
-      <label>Pokemon Name:${this.data.name} </label>
-    </div>
-    <div class="stat">
-      <label>Type: ${this.data.types[0].type.name} </label>
-    </div>
-    <div class="stat">
-      <label>height: ${this.data.height} </label>            
-    </div>
-    <div class="stat">
-      <label>weight: ${this.data.weight} </label>
+      </div>
+    <div class="arrtibutes">
+      <label>Pokemon Name :${this.data.name} </label>
+      <label>Type : ${this.data.types[0].type.name} </label>
+      <label>height : ${this.data.height} </label>            
+      <label>weight : ${this.data.weight} </label>
     </div>
     </div>`;
-  this.renderStat();
+      this.renderStat();
     }
   }
 
-  renderStat(){
-    this.data.stats.forEach((stat) =>{
-      document.getElementById('pokemon-stats')!.innerHTML += `<div class="stat">
+  renderStat() {
+    this.data.stats.forEach((stat) => {
+      document.getElementById("pokemon-stats")!.innerHTML += `<div class="stat">
       <label>${stat.stat.name} : ${stat.base_stat} </label>
-    </div>`
+    </div>`;
     });
   }
 }
