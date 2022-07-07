@@ -1,34 +1,24 @@
 
 import { PokemonComponent } from "./shared/pokemonComponent";
 import { PokemonData } from "./shared/pokemonComponent";
+import { data } from "./data/data";
+
+
+const pokemonDataArray: PokemonData[] = data
 
 class Module {
-    pokemonsPromise: Promise<any>;
 
-    constructor() {
-        this.pokemonsPromise = this.getPokemons();
+    getRandomPokemon() {
+        let randomNum = Math.floor(Math.random() * pokemonDataArray.length);
+        this.createPokemoneElement(pokemonDataArray[randomNum]);
     }
 
-    async getPokemons() {
-        let allPokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1154")
-            .then(res => res.json())
-            .then(data => data["results"]);
-        return allPokemons.map((pokemon: { name: string }) => pokemon.name)
-    }
-
-    async getPokemonByRandom() {
-        let randomNum = Math.floor(Math.random() * 1100);
-        this.pokemonsPromise.then((response) => {
-            this.getPokemonByName(response[randomNum]);
+    getPokemonByName(name: string) {
+        pokemonDataArray.forEach((pokeData) => {
+            if (pokeData.name === name) {
+                return pokeData;
+            }
         })
-    }
-
-    async getPokemonByName(name: string) {
-
-        let wantedPokemon = await fetch("https://pokeapi.co/api/v2/pokemon/" + name)
-            .then(res => res.json())
-            .then(data => this.createPokemoneElement(data))
-            .catch(() => { console.log('didnt work') })
     }
 
     createPokemoneElement(pokemonData: PokemonData) { //render with the data into the html page.
@@ -38,11 +28,14 @@ class Module {
 
     searchPokemon() {
         let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
-        this.getPokemonByName(input);
+        let data = this.getPokemonByName(input);
+        if (data != undefined) {
+            this.createPokemoneElement(data);
+        }
     }
 
     searchRandomPokemon() {
-        this.getPokemonByRandom();
+        this.getRandomPokemon();
     }
 }
 
@@ -55,13 +48,12 @@ function filterPokemonsByInputValue() {
     if (!onlyLetters(input)) {
         return;
     }
-    
+
     pokemonsList.innerHTML = "";
-    module.pokemonsPromise.then((response) => {
-        let arr = response.filter((name: string) => name.startsWith(input));
-        arr.forEach((pokemonName: string) => { module.getPokemonByName(pokemonName) });
-    })
+    let arr = pokemonDataArray.filter(pokemonData => pokemonData.name.startsWith(input));
+    arr.forEach((pokemonData) => { module.getPokemonByName(pokemonData.name) });
 }
+
 function onlyLetters(str: string) {
     return /^[a-zA-Z]+$/.test(str);
 }
@@ -70,10 +62,9 @@ function onlyLetters(str: string) {
 export const module = new Module();
 function onLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
-    module.getPokemons();
     document.getElementById("search-poke-input")!.addEventListener("keyup", filterPokemonsByInputValue);
-    for (let i = 0; i < 50; i++) {
-        module.getPokemonByRandom();
+    for (let i = 0; i < 5; i++) {
+        module.getRandomPokemon();
     }
 }
 window.addEventListener("load", () => {
