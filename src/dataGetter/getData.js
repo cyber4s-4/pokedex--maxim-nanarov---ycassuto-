@@ -1,6 +1,6 @@
 
-const fs = require("fs");
-const path = require("path");
+export const fs = require("fs");
+export const path = require("path");
 
 let pokemonPromise = getPokemonPromise();
 
