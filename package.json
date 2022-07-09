@@ -1,5 +1,6 @@
 {
   "name": "gulp_typescript",
+  "types": "module",
   "scripts": {
     "start": "gulp",
     "lint": "eslint ./src --ext .ts",
@@ -8,6 +9,7 @@
   },
   "dependencies": {
     "@types/jest": "^28.1.1",
+    "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.24.0",
     "@typescript-eslint/parser": "^5.24.0",
     "browser-sync": "^2.27.9",
