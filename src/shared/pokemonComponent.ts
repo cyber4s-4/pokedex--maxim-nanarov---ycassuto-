@@ -18,7 +18,6 @@ export class PokemonComponent {
 
   render() {
     if (window.location.href === "http://localhost:4000/") {
-      console.log(this.data);
       this.parent.innerHTML += `<div id="${this.data.name}" onclick="app.module.MoveTo(this.id)" class="pokemon">
             <div class="stat">
               <img src="${this.data.photoURL}" class="pokemon-img">
@@ -37,7 +36,6 @@ export class PokemonComponent {
             </div>
           </div>`;
     } else {
-      console.log(this.data);
       document.getElementById("Title")!.innerHTML = this.data.name;
       this.parent.innerHTML += `<div id="${this.data.name}" class="Spokemon">
       <div>

@@ -11,16 +11,17 @@ class Module {
         this.createPokemoneElement(pokemonDataArray[randomNum]);
     }
 
+    //search pokemon by name, if exist render it to the page.
     getPokemonByName(name: string) {
         pokemonDataArray.forEach((pokeData) => {
             if (pokeData.name === name) {
-                return pokeData;
+                this.createPokemoneElement(pokeData);
             }
-        })
+        });
     }
 
+    //render with the data into the html page.
     createPokemoneElement(pokemonData: PokemonData) {
-        //render with the data into the html page.
         let pokemonComponent = new PokemonComponent(pokemonData, pokemonsList);
         pokemonComponent.render();
     }
@@ -29,6 +30,7 @@ class Module {
         let quarry = "name=" + str;
         window.location.href = "http://localhost:4000/Specific.html?" + quarry;
     }
+    
     GoBack() {
         window.location.href = "http://localhost:4000/";
     }
