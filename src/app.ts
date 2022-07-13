@@ -44,7 +44,11 @@ function filterPokemonsByInputValue() {
 
     pokemonsList.innerHTML = "";
     let arr = pokemonDataArray.filter(pokemonData => pokemonData.name.startsWith(input));
-    arr.forEach((pokemonData) => { module.getPokemonByName(pokemonData.name) });
+    if (arr.length > 0) {
+        arr.forEach((pokemonData) => { module.getPokemonByName(pokemonData.name) });
+    } else {
+        pokemonsList.innerHTML = "pokemon not discovered yet";
+    }
 
 }
 
