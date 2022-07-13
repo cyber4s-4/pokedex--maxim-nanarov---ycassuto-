@@ -26,17 +26,8 @@ gulp.task("scss", () => {
 // Transfers index
 gulp.task("index", () => {
   return gulp
-    .src(["./src/index.html", "./src/SpecificPokemon/Specific.html","./src/favicon.ico"])
+    .src(["./src/index.html", "./src/favicon.ico"])
     .pipe(gulp.dest("./dist"));
-});
-
-// Browser Sync
-gulp.task("browser-sync", () => {
-  browserSync.init({
-    browser: "default",
-    port: 4000,
-    server: { baseDir: "./dist" },
-  });
 });
 
 // Browser Sync live reload
@@ -44,7 +35,6 @@ gulp.task("browser-sync-watch", () => {
   gulp.watch("./dist/styles.css").on("change", browserSync.reload);
   gulp.watch("./dist/app.js").on("change", browserSync.reload);
   gulp.watch("./dist/index.html").on("change", browserSync.reload);
-  gulp.watch("./dist/Specific.html").on("change", browserSync.reload);
 });
 
 // Watch scss files
@@ -55,10 +45,6 @@ gulp.task("watch-scss", () => {
 // Watch html files
 gulp.task("watch-index-html", () => {
   return gulp.watch("./src/index.html", gulp.series("index"));
-});
-
-gulp.task("watch-Specific-html", () => {
-  return gulp.watch("./src/SpecificPokemon/Specific.html", gulp.series("index"));
 });
 
 // Watch tsc files
@@ -78,6 +64,13 @@ gulp.task("tsc-w", () => {
   exec("tsc -w");
 });
 
+// Start express
+gulp.task('express', () => {
+  const tsc = exec('nodemon ./src/backend/server.js');
+  tsc.stdout.on('data', data => console.log(data));
+  tsc.stderr.on('data', data => console.error(data));
+});
+
 // Run all together
 gulp.task(
   "default",
@@ -88,13 +81,12 @@ gulp.task(
     "tsc",
     "build",
     gulp.parallel(
-      "browser-sync",
       "browser-sync-watch",
       "watch-scss",
       "watch-index-html",
-      "watch-Specific-html",
       "watch-tsc",
-      "tsc-w"
+      "tsc-w",
+      'express'
     )
   )
 );

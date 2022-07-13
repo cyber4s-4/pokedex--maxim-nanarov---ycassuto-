@@ -1,6 +1,6 @@
 
-export const fs = require("fs");
-export const path = require("path");
+const fs = require("fs");
+const path = require("path");
 
 let pokemonPromise = getPokemonPromise();
 
@@ -9,7 +9,7 @@ const filePath = path.join(__dirname, "../data/data.json");
 //home/student/Desktop/pokedex-maxim-nanarov-ycassuto/src/dataGetter/getData.js
 
 async function getPokemonPromise() {
-    let allPokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100")
+    let allPokemons = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
         .then(res => res.json())
         .then(data => data["results"]);
     return allPokemons.map((pokemon) => pokemon.name)
@@ -20,7 +20,7 @@ async function addToData() {
         fetch("https://pokeapi.co/api/v2/pokemon/" + name)
             .then(res => res.json())
             .then(data => {
-                let obj ={
+                let obj = {
                     photoURL: data.sprites.front_default,
                     name: data.name,
                     type: data.types[0].type.name,
@@ -35,7 +35,7 @@ async function addToData() {
 }
 addToData();
 class PokeData {
-    constructor(data){
+    constructor(data) {
         this.photoURL = data.sprites.front_default;
         this.name = data.name;
         this.type = data.types[0].type.name;

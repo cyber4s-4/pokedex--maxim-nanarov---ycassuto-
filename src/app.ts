@@ -1,12 +1,12 @@
 import { PokemonComponent } from "./shared/pokemonComponent";
-import { PokemonData } from "./shared/pokemonComponent";
-import { data } from "./data/data";
+import { PokemonData } from "./shared/IPokemonData";
 
 
-const pokemonDataArray: PokemonData[] = data
+let pokemonDataArray: PokemonData[] = [];
 class Module {
 
     getRandomPokemon() {
+        pokemonsList.innerHTML = "";
         let randomNum = Math.floor(Math.random() * pokemonDataArray.length);
         this.createPokemoneElement(pokemonDataArray[randomNum]);
     }
@@ -24,23 +24,6 @@ class Module {
     createPokemoneElement(pokemonData: PokemonData) {
         let pokemonComponent = new PokemonComponent(pokemonData, pokemonsList);
         pokemonComponent.render();
-    }
-
-    MoveTo(str: any) {
-        let quarry = "name=" + str;
-        window.location.href = "http://localhost:4000/Specific.html?" + quarry;
-    }
-    
-    GoBack() {
-        window.location.href = "http://localhost:4000/";
-    }
-
-    searchPokemon() {
-        let input = (<HTMLInputElement>document.getElementById("search-poke-input")).value;
-        let data = this.getPokemonByName(input);
-        if (data != undefined) {
-            this.createPokemoneElement(data);
-        }
     }
 
     searchRandomPokemon() {
@@ -75,33 +58,20 @@ export const module = new Module();
 function onMainLoad() {
     pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
     document.getElementById("search-poke-input")!.addEventListener("keyup", filterPokemonsByInputValue);
-    for (let i = 0; i < 5; i++) {
-        module.getRandomPokemon();
+    for (let i = 0; i < 20; i++) {
+        module.createPokemoneElement(pokemonDataArray[i]);
     }
 }
 
-//Specific pokemon page load
-function onSpecificPokemonLoad() {
-    pokemonsList = document.getElementById("pokemons-list") as HTMLElement;
-    const myURL = new URL(window.location.href);
-    let name = "none";
-    myURL.search
-        .replace("?", "")
-        .split("&")
-        .forEach((query) => {
-            let key = query.split("=")[0];
-            if (key === "name") {
-                name = query.split("=")[1];
-            }
-        });
-    module.getPokemonByName(name);
+async function onLoad() {
+    await fetch('/getPokemons')
+        .then(res => res.json().then(data => {
+            pokemonDataArray.push(...data);
+        }))
+
+    onMainLoad();
+
 }
 
-window.addEventListener("load", () => {
-    if (window.location.href.includes("Specific")) {
-        onSpecificPokemonLoad();
-    } else {
-        onMainLoad();
-    }
-});
+window.addEventListener("load", onLoad);
 let pokemonsList: HTMLElement;
