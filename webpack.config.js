@@ -1,8 +1,7 @@
 module.exports = {
   mode: 'development',
-  entry: "./dist/tsc/app.js",
+  entry: "./dist/tsc/client/app.js",
   devtool: "source-map",
-  target: 'node',
   output: {
     filename: "app.js",
     library: "app"
