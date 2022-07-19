@@ -56,7 +56,6 @@ function onlyLetters(str: string) {
   return /^[a-zA-Z]+$/.test(str);
 }
 
-export const module = new Module();
 
 //main page load
 function onMainLoad() {
@@ -74,8 +73,20 @@ async function onLoad() {
     }))
 
   onMainLoad();
-
 }
 
 window.addEventListener("load", onLoad);
+window.onscroll = async function () {
+  if ((window.innerHeight + window.scrollY + 2) >= document.body.scrollHeight) {
+    await fetch('/getPokemons')
+      .then(res => res.json().then(data => {
+        data.forEach((pokemonData: PokemonData) => {
+          module.createPokemoneElement(pokemonData);
+        })
+        pokemonDataArray.push(...data);
+      }))
+  }
+};
+
 let pokemonsList: HTMLElement;
+export const module = new Module();
