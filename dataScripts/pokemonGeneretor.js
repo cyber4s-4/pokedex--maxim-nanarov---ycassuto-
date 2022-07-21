@@ -7,7 +7,7 @@ const readFileData = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
 let generetePokemons = [];
 
-for (let i = 0; i < 100000; i++) {
+for (let i = 0; i < 1000; i++) {
     let rnd1 = Math.floor(Math.random() * readFileData.length);
     let rnd2 = Math.floor(Math.random() * readFileData.length);
     let rnd3 = Math.floor(Math.random() * 3);
