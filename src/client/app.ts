@@ -67,9 +67,10 @@ function onMainLoad() {
 }
 
 async function onLoad() {
-  await fetch('/getPokemons')
+  await fetch('/pokemon')
     .then(res => res.json().then(data => {
       pokemonDataArray.push(...data);
+     console.log(pokemonDataArray[0]);
     }))
 
   onMainLoad();
