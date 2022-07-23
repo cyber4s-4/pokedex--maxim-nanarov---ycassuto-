@@ -104,7 +104,6 @@ gulp.task('heroku-copy-root', () => {
     './package-lock.json',
     './Procfile',
     './dist/tsc/server/server.js',
-    './dist/tsc/server/mongo.js',
   ])
     .pipe(gulp.dest('./deploy'));
 });
@@ -113,7 +112,6 @@ gulp.task('heroku-copy-root', () => {
 gulp.task('heroku-clean', () => {
   return gulp.src([
     './deploy/server.js',
-    './deploy/mongo.js',
     './deploy/Procfile',
     './deploy/package.json',
     './deploy/package-lock.json',

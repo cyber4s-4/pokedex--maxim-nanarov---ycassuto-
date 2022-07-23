@@ -9,6 +9,7 @@ const app: Express = express();
 app.use(cors());
 app.use(json());
 
+
 let startIndex=0;
 let endIndex=20;
 
@@ -22,7 +23,7 @@ const client = new Client({
   },
 });
 
-
+//connects the client to the database
 client.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
@@ -30,7 +31,7 @@ client.connect(function(err) {
 
 // @ts-ignore
 
-
+//gets the data from the database based on the ID so that it wont be 1000 requests to the server at the same time.
 app.get('/pokemon', (req, response) => {
   console.log("Get");
   client.query(`SELECT * FROM pokemon Where ID < ${endIndex} and ID > ${startIndex};`, (err: Error, res: any) => {
