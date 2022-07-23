@@ -4,13 +4,15 @@ import { json } from 'body-parser';
 import { Client } from 'pg';
 // import { start } from 'repl';
 
-const portHttp = 3002;
+const portHttp = 4069;
 const app: Express = express();
 app.use(cors());
 app.use(json());
 
 let startIndex=0;
 let endIndex=20;
+
+app.use(express.static("./dist"));
 
 const client = new Client({
   connectionString:
@@ -20,16 +22,20 @@ const client = new Client({
   },
 });
 
+
+client.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
 // @ts-ignore
 
-app.use(express.static("./dist"));
 
-// @ts-ignore
 app.get('/pokemon', (req, response) => {
   console.log("Get");
   client.query(`SELECT * FROM pokemon Where ID < ${endIndex} and ID > ${startIndex};`, (err: Error, res: any) => {
     if (err) console.log(err);
-    console.log(res.rows)
+    console.log(res.rows[0].photourl);
     response.status(200).json(res.rows);
     endIndex += 20; 
     startIndex += 20;

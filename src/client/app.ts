@@ -70,7 +70,7 @@ async function onLoad() {
   await fetch('/pokemon')
     .then(res => res.json().then(data => {
       pokemonDataArray.push(...data);
-     console.log(pokemonDataArray[0]);
+     console.log(data[0].photoURL);
     }))
 
   onMainLoad();
@@ -79,7 +79,7 @@ async function onLoad() {
 window.addEventListener("load", onLoad);
 window.onscroll = async function () {
   if ((window.innerHeight + window.scrollY + 2) >= document.body.scrollHeight) {
-    await fetch('/getPokemons')
+    await fetch('/pokemon')
       .then(res => res.json().then(data => {
         data.forEach((pokemonData: PokemonData) => {
           module.createPokemoneElement(pokemonData);

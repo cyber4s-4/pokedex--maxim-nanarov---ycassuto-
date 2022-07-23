@@ -11,7 +11,7 @@ export class PokemonComponent {
   render() {
     this.parent.innerHTML += `<div class="pokemon">
             <div class="stat">
-              <img src="${this.data.photoURL}" class="pokemon-img">
+              <img src="${this.data.photourl}" class="pokemon-img">
             </div>
             <div class="stat">
               <label>Pokemon Name:${this.data.name} </label>

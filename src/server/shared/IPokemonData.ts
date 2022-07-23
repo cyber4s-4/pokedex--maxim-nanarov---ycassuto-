@@ -1,5 +1,5 @@
 export interface PokemonData {
-  photoURL: string;
+  photourl: string;
   name: string
   type: string;
   height: number;
